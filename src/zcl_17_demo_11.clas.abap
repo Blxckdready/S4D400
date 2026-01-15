@@ -23,14 +23,10 @@ CLASS zcl_17_demo_11 IMPLEMENTATION.
     DATA vehicles TYPE TABLE OF REF TO zcl_17_vehicle.
 
     "Instanceiation
-    vehicle = new #( ).
-    vehicle->set_make( 'Porsche' ).
-    vehicle->set_model( '911' ).
+    vehicle = new #( make = 'Porsche' model = '911' ).
     APPEND vehicle to vehicles.
 
-    vehicle = new #(  ).
-    vehicle->set_make( 'Skoda' ).
-    vehicle->set_model( 'Octavia' ).
+    vehicle = new #( make = 'Skoda' model = 'Octavia' ).
     APPEND vehicle to vehicles.
 
     LOOP AT vehicles INTO vehicle.
