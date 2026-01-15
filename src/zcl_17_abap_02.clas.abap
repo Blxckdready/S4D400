@@ -1,4 +1,4 @@
-CLASS zcl_timon_abap_02 DEFINITION
+CLASS zcl_17_abap_02 DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_timon_abap_02 IMPLEMENTATION.
+CLASS zcl_17_abap_02 IMPLEMENTATION.
 
 
 

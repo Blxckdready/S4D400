@@ -1,4 +1,4 @@
-CLASS zcl_timon_abap_04 DEFINITION
+CLASS zcl_17_abap_04 DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_timon_abap_04 IMPLEMENTATION.
+CLASS zcl_17_abap_04 IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
