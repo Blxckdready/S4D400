@@ -1,0 +1,4 @@
+INTERFACE zif_17_partner
+  PUBLIC .
+
+ENDINTERFACE.

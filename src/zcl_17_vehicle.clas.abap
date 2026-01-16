@@ -7,7 +7,9 @@ CLASS zcl_17_vehicle DEFINITION
     METHODS constructor IMPORTING make  TYPE string
                                   model TYPE string.
     METHODS accelerate IMPORTING value TYPE i.
-    METHODS brake      IMPORTING value TYPE i.
+    METHODS brake      IMPORTING value TYPE i
+                       RAISING
+                         zcx_17_value_too_high.
     METHODS: get_make RETURNING VALUE(r_result) TYPE string,
       get_model RETURNING VALUE(r_result) TYPE string,
       get_speed_in_kmh RETURNING VALUE(r_result) TYPE i,
@@ -34,6 +36,9 @@ CLASS zcl_17_vehicle IMPLEMENTATION.
 
     METHOD brake.
       speed_in_kmh -= value.
+      if value > speed_in_kmh.
+        raise exception new zcx_17_VALUE_TOO_HIGH( value ).
+      ENDIF.
     ENDMETHOD.
 
     METHOD get_make.
