@@ -1,29 +1,13 @@
-CLASS zcl_17_abap_06 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_17_ABAP_06 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_17_abap_06 IMPLEMENTATION.
-
-
-  METHOD if_oo_adt_classrun~main.
-
-    TRY.
-        data(result) = zcl_17_helper=>get_travel_with_customer( 1 ).
-      CATCH zcx_abap_no_data INTO DATA(x).
-        out->write( x->get_text( ) ).
-    ENDTRY.
-
-    out->write( result ).
-
-  ENDMETHOD.
+CLASS ZCL_17_ABAP_06 IMPLEMENTATION.
 ENDCLASS.

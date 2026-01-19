@@ -1,61 +1,13 @@
-CLASS zcl_17_demo_03 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_17_DEMO_03 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_17_demo_03 IMPLEMENTATION.
-
-
-  METHOD if_oo_adt_classrun~main.
-
-    DATA age TYPE i VALUE 18.
-    DATA gender TYPE c LENGTH 1 VALUE 'd'. " DATA gender.Ï
-    DATA first_name TYPE c LENGTH 40  VALUE 'Sam'.
-    DATA last_name TYPE c LENGTH 40 VALUE 'Maier'.
-
-    " Vergleichsoperatoren: >, >=, <, <=, =, <>
-    " Logischer Operatoren: AND, OR, NOT
-    " + IS (NOT) INITIAL
-    IF age < 18.
-      out->write( |Hallo { first_name }| ).
-    ELSEIF gender = 'm' OR gender = 'M'.
-      out->write( |Hallo Herr { last_name }| ).
-    ELSEIF gender = 'w' OR gender = 'W'.
-      out->write( |Hallo Frau { last_name }| ).
-    ELSE.
-      out->write( |Hallo { last_name }| ).
-    ENDIF.
-
-    out->write( |Hallo { COND #( WHEN age < 18 THEN |{ first_name }|
-                                 WHEN gender = 'm' OR gender = 'M' THEN |Herr { last_name }|
-                                 WHEN gender = 'w' OR gender = 'W' THEN |Frau { last_name }|
-                                 ELSE |{ last_name }| ) }| ).
-
-    IF age IS INITIAL.
-      out->write( |kein Alter angegeben| ).
-    ENDIF.
-
-    CASE gender.
-      WHEN 'm' OR 'M'.
-        out->write( |Hallo Herr { last_name }| ).
-      WHEN 'w' OR 'W'.
-        out->write( |Hallo Frau { last_name }| ).
-      WHEN OTHERS.
-        out->write( |Hallo { last_name }| ).
-    ENDCASE.
-
-    out->write( |Hallo { SWITCH #( gender WHEN 'm' OR 'M' THEN |Herr { last_name }|
-                                          WHEN 'w' OR 'W' THEN |Frau { last_name }|
-                                          ELSE last_name ) }| ).
-
-  ENDMETHOD.
+CLASS ZCL_17_DEMO_03 IMPLEMENTATION.
 ENDCLASS.
