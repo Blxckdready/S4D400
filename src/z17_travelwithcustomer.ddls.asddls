@@ -21,7 +21,7 @@ define view entity Z17_TravelWithCustomer
       t.AgencyId,
       t.BeginDate,
       t.EndDate,
-      dats_days_between(t.BeginDate, t.EndDate)                       as Duration,
+      dats_days_between(t.BeginDate, t.EndDate) + 1                   as Duration,
 
       @Semantics.amount.currencyCode: 'CurrencyCode'
       currency_conversion(amount             => t.BookingFee,
