@@ -14,11 +14,12 @@ ENDCLASS.
 
 CLASS zcl_17_abap_cds_06 IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
-
     SELECT
       FROM Z17_CustomerKPIs( city_input = 'Mainz' )
       FIELDS *
       INTO TABLE @DATA(result).
+
+    SORT result BY CustomerName DESCENDING.
 
     out->write( result ).
   ENDMETHOD.
