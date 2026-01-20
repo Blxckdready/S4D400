@@ -4,34 +4,52 @@
 
 @EndUserText.label: 'Task 3'
 
-@Metadata.ignorePropagatedAnnotations: true
-
 define view entity Z17_TravelWithCustomer
-  as select from Z17_Customer as c
+  as select from    Z17_Customer                     as c
 
-    inner join   Z17_Travel   as t on c.CustomerId = t.CustomerId
+    inner join      Z17_Travel                       as t
+      on c.CustomerId = t.CustomerId
+
+    left outer join DDCDS_CUSTOMER_DOMAIN_VALUE_T(
+                      p_domain_name : '/DMO/STATUS') as st
+      on  st.language  = $session.system_language
+      and st.value_low = t.Status
 
 {
   key t.TravelId,
 
-      c.FirstName,
-      c.LastName,
-      c.Title,
-      c.Street,
-      c.PostalCode,
-      c.City,
-      
       t.AgencyId,
-      t.CustomerId,
       t.BeginDate,
       t.EndDate,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
-      t.BookingFee,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
-      t.TotalPrice,
-      t.CurrencyCode,
-      t.Description,
-      t.Status
-}
-where c.CountryCode = 'DE'
+      dats_days_between(t.BeginDate, t.EndDate)                       as Duration,
 
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      currency_conversion(amount             => t.BookingFee,
+                          source_currency    => t.CurrencyCode,
+                          target_currency    => cast('EUR' as abap.cuky),
+                          exchange_rate_date => $session.system_date) as BookingFee,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      currency_conversion(amount             => t.TotalPrice,
+                          source_currency    => t.CurrencyCode,
+                          target_currency    => cast('EUR' as abap.cuky),
+                          exchange_rate_date => $session.system_date) as TotalPrice,
+
+      cast('EUR' as abap.cuky)                                        as CurrencyCode,
+      t.Description,
+      t.Status,
+      st.text                                                         as StatusText,
+
+      c.CustomerId,
+
+      concat_with_space(
+        concat_with_space(c.Title, c.FirstName, 1),
+        c.LastName,
+        1)                                                            as CustomerName,
+
+      c.Street,
+      c.PostalCode,
+      c.City
+}
+
+where c.CountryCode = 'DE'
