@@ -5,6 +5,7 @@
 @EndUserText.label: 'Task 3'
 
 define view entity Z17_CustomerKPIs
+  with parameters city_Input : /dmo/city
   as select from Z17_TravelWithCustomer
 
 {
@@ -23,6 +24,7 @@ define view entity Z17_CustomerKPIs
   
   count(distinct AgencyId) as NumberOfDifferentAgencys
 }
+where City = $parameters.city_Input
 
 group by CustomerId,
          CustomerName,
