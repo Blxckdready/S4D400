@@ -3,7 +3,7 @@
 @EndUserText.label: 'Task 7'
 @Metadata.ignorePropagatedAnnotations: true
 define view entity Z17_CustomerWithTravels as select from Z17_Customer as c
-  association [0..*] to Z17_Travel as _Travel on _Travel.CustomerId = c.CustomerId
+  association [0..*] to Z17_Travel as _Travel on $projection.CustomerId = c.CustomerId
 {
 key c.CustomerId,
 
