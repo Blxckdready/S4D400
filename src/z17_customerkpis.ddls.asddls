@@ -20,7 +20,7 @@ define view entity Z17_CustomerKPIs
 
   cast('EUR' as abap.cuky) as CurrencyCode,
 
-  division(sum(Duration), count(*), 0) as AverageDuration,
+  avg(Duration as abap.dec(16,2)) as AverageDuration,
   
   count(distinct AgencyId) as NumberOfDifferentAgencys
 }
