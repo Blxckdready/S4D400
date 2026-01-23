@@ -8,8 +8,8 @@
 
 define view entity Z17_Customer
   as select from /dmo/customer
-
 {
+
   key customer_id  as CustomerId,
 
       first_name   as FirstName,

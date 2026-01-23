@@ -1,0 +1,52 @@
+managed implementation in class zbp_17_traveltp unique;
+strict ( 2 );
+
+// Behavior Definition for Root entity Travel
+define behavior for ZR_17_TravelTP alias Travel
+persistent table /dmo/travel
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  association _Bookings { create; }
+  field ( readonly ) TravelId;
+
+  mapping for /dmo/travel corresponding
+    {
+      AgencyId     = agency_id;
+      BeginDate    = begin_date;
+      EndDate      = end_date;
+      BookingFee   = booking_fee;
+      CurrencyCode = currency_code;
+      TotalPrice   = total_price;
+      CustomerId   = customer_id;
+      TravelId     = travel_id;
+    }
+}
+// Behavior Definition for Child entity Booking
+define behavior for ZR_17_BOOKINGTP //alias <alias_name>
+persistent table /dmo/booking
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId;
+  association _Travel;
+
+  mapping for /dmo/booking corresponding
+    {
+      BookingDate  = booking_date;
+      BookingId    = booking_id;
+      CarrierId    = carrier_id;
+      ConnectionId = connection_id;
+      CurrencyCode = currency_code;
+      TravelId     = travel_id;
+      CustomerId   = customer_id;
+      FlightPrice  = flight_price;
+    }
+}
