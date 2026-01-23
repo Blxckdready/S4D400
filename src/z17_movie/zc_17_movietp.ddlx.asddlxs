@@ -15,6 +15,9 @@ annotate entity ZC_17_MOVIETP
   @UI.facet: [ { position: 10, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Details', label: 'Movie Details' },
                { position: 20, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Admin', label: 'Administrative Data' },
                { position: 30, type: #LINEITEM_REFERENCE, targetElement: '_Rating', label: 'Ratings' } ]
+               
+  /* Actions */
+  @UI.lineItem: [{ position: 10, type: #FOR_ACTION, label: 'Rate Movie', dataAction: 'RateMovie'}]
 
   /* fields */
   @UI.fieldGroup: [ { position: 10, qualifier: 'Admin' } ]

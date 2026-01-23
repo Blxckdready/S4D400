@@ -7,7 +7,9 @@ define behavior for ZC_17_MOVIETP //alias <alias_name>
   use update;
   use delete;
 
-  use association _Rating { create; }
+  use action RateMovie;
+
+  use association _Rating { }
 }
 
 define behavior for ZC_17_RATINGTP //alias <alias_name>

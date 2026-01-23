@@ -19,6 +19,8 @@ authorization master ( instance )
 
   validation ValidateCustomer on save { create; }
 
+  action RateMovie parameter ZA_17_Rating; //result [1] $self;
+
   mapping for zabap_movie_a corresponding
     {
       CreatedAt      = created_at;
